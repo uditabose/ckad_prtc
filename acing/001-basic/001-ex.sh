@@ -86,10 +86,12 @@ HINT: First, create a new clusterrole named “view-binding” with the command
 ```
 kubectl create clusterrolebinding view-binding --clusterrole=view --serviceaccount=kube-system:default
 ```
+
 and to view the secret of the default service account, list the YAML via the command
 ```
 kubectl get sa default -o yaml -n kube-system
 ```
+
 Once you have the secret name, you can output the yaml to view the token with the command
 ```
 kubectl get secret default-token-fzls7 -n kube-system -o yaml
@@ -97,9 +99,14 @@ kubectl get secret default-token-fzls7 -n kube-system -o yaml
 (default-token-fzls7 is the name of my secret, but yours will be different).
 Then, copy the token, save it into an environment variable named TOKEN
 and base64 decode it with the command
-`TOKEN='6IlJ6czFud2llb3pKN05hUDh2Q3VNeDRXNWJ3eUhFczh0TW' | base64 -d`.
+
+```
+TOKEN='6IlJ6czFud2llb3pKN05hUDh2Q3VNeDRXNWJ3eUhFczh0TW' | base64 -d
+```
+
 Next, you can get the output of
-`kubectl config view`
+```kubectl config view```
+
 and copy the server address (mine is `https://kind-control-plane:6443`).
 Save that in an environment variable named “SERVER”.
 Now you can use curl to access the Kubernetes API with the command
