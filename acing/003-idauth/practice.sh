@@ -51,3 +51,53 @@ kubectl config use-context carol
 kubectl get po
 
 kubectl config use-context kubernetes-admin@kind
+
+kubectl delete rolebinding admin-binding
+
+kubectl create rolebinding pod-reader-bind --role=pod-reader --group=developers
+
+kubectl config use-context carol
+kubectl get po
+
+kubectl create ns web
+kubectl get sa -n web
+kubectl describe secret -n web
+kubectl describe sa -n web
+kubectl describe secret default-token-mv8xd -n web
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+kubectl get po nginx -o yaml
+
+kubectl exec -it nginx-deployment-7fb96c846b-77kfv -- sh
+cat /var/run/secrets/kubernetes.io/serviceaccount/token
+
+kubectl create sa nomount-sa --dry-run=client -o yaml > nomount-sa.yaml
+echo "automountServiceAccountToken: false" >> nomount-sa.yaml
+kubectl create -f nomount-sa.yaml
+kubectl run no-mount --image nginx --dry-run=client -o yaml > no-mount-pod.yaml
+apt update && apt install -y vim
+
+kubectl create -f no-mount-pod.yaml
+kubectl get po no-mount -o yaml | grep volumeMounts
+kubectl get po no-mount -o yaml | grep volumeMounts -A14
+
+kubectl run default-no-mount --image nginx --dry-run=client -o yaml > default-no-mount-pod.yaml
+echo "automountServiceAccountToken: false" >> default-no-mount-pod.yaml
+kubectl create -f default-no-mount-pod.yaml
+kubectl get po default-no-mount -o yaml | grep serviceAccount
+kubectl get po default-no-mount -o yaml | grep serviceAccount -A14
+kubectl create role pod-list --verb=list --resource=pods
+kubectl create role pod-list-new --verb=list --resource=pods
+kubectl create rolebinding pod-list-bind --role=pod-list --serviceaccount=default:nomount-sa
+
+kubectl auth can-i list pods --as system:serviceaccount:default:nomount-sa
+
+
+
+
+
+
+
+
