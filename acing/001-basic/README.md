@@ -33,3 +33,7 @@ CoreDNS is running at https://127.0.0.1:63073/api/v1/namespaces/kube-system/serv
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
+
+```bash
+kubectl config view --context kind-kind > ~/.kube/kind-kind
+```
