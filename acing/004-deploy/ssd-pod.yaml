@@ -10,6 +10,8 @@ spec:
   - image: nginx
     name: ssd-pod
     resources: {}
+  nodeSelector:
+    disktype: ssd
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
