@@ -33,7 +33,7 @@ Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/
 ### Verify
 
 ```bash
- kubectl cluster-info --context kind-acing
+kubectl cluster-info --context kind-acing
 Kubernetes control plane is running at https://127.0.0.1:63067
 CoreDNS is running at https://127.0.0.1:63067/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
