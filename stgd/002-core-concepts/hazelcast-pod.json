@@ -1,0 +1,177 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2024-03-26T02:20:50Z",
+        "labels": {
+            "env": "prod",
+            "name": "hazelcast"
+        },
+        "name": "hazelcast",
+        "namespace": "default",
+        "resourceVersion": "858520",
+        "uid": "b9a8f965-2a62-49a0-b14e-0f74b2e9d15b"
+    },
+    "spec": {
+        "containers": [
+            {
+                "env": [
+                    {
+                        "name": "DNS_DOMAIN",
+                        "value": "cluster"
+                    }
+                ],
+                "image": "hazelcast/hazelcast",
+                "imagePullPolicy": "Always",
+                "name": "hazelcast",
+                "ports": [
+                    {
+                        "containerPort": 5701,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-sxcjs",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "acing-multi-worker",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-sxcjs",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T02:21:12Z",
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T02:20:50Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T02:21:12Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T02:21:12Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T02:20:50Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://7dcb60200b8858ae57ecf5b540a070d008efc2704f592fe68e63bd300bc9f4f8",
+                "image": "docker.io/hazelcast/hazelcast:latest",
+                "imageID": "docker.io/hazelcast/hazelcast@sha256:7c7f2ec733b19dbbf47f01e1c3d34069ce9b6d4da1ffddbedafd16ee86136c74",
+                "lastState": {},
+                "name": "hazelcast",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2024-03-26T02:21:12Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "172.18.0.8",
+        "hostIPs": [
+            {
+                "ip": "172.18.0.8"
+            }
+        ],
+        "phase": "Running",
+        "podIP": "10.244.2.2",
+        "podIPs": [
+            {
+                "ip": "10.244.2.2"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "startTime": "2024-03-26T02:20:50Z"
+    }
+}
