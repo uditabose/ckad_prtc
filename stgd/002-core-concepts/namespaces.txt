@@ -1,0 +1,6 @@
+NAME                 STATUS   AGE
+default              Active   33d
+kube-node-lease      Active   33d
+kube-public          Active   33d
+kube-system          Active   33d
+local-path-storage   Active   33d
