@@ -10,6 +10,11 @@
   - [View Pod Logs](#view-pod-logs)
   - [In the Pod](#in-the-pod)
   - [Delete the Pod](#delete-the-pod)
+  - [Pod with Environment variable](#pod-with-environment-variable)
+    - [Verify Pod with Environment variable](#verify-pod-with-environment-variable)
+    - [Delete the Pod with Environment variable](#delete-the-pod-with-environment-variable)
+  - [Pod with Entrypoint](#pod-with-entrypoint)
+    - [Verify Pod with Entrypoint](#verify-pod-with-entrypoint)
 
 
 ## Create Hazelcast Pod
@@ -85,4 +90,48 @@ HOME=/home/hazelcast
 ```bash
 kubectl delete pod hazelcast
 kubectl delete -f hazelcast-pod.yaml
+```
+
+## Pod with Environment variable
+
+```bash
+kubectl create -f spring-boot-env.yaml
+```
+
+### Verify Pod with Environment variable
+
+```bash
+kubectl get pods spring-boot-app -o json > spring-boot-app.json
+```
+
+### Delete the Pod with Environment variable
+
+```bash
+kubectl delete pod spring-boot-app
+kubectl delete -f hazelcast-pod.yaml
+```
+
+## Pod with Entrypoint
+
+```bash
+kubectl create -f entrypoint-pod.yaml
+```
+
+### Verify Pod with Entrypoint
+
+```bash
+kubectl get pods mypod -o json > mypodp.json
+kubectl logs mypod -f
+
+---
+kubectl logs mypod -f
+---
+ue Mar 26 04:02:58 UTC 2024
+Tue Mar 26 04:03:08 UTC 2024
+Tue Mar 26 04:03:18 UTC 2024
+Tue Mar 26 04:03:28 UTC 2024
+
+---
+kubectl delete pods mypod --grace-period=0 --force
+
 ```

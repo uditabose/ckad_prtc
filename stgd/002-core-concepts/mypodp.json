@@ -1,0 +1,175 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2024-03-26T03:58:35Z",
+        "name": "mypod",
+        "namespace": "default",
+        "resourceVersion": "867364",
+        "uid": "260d821b-90c0-4fb4-9dd7-24ed0b718c7b"
+    },
+    "spec": {
+        "containers": [
+            {
+                "args": [
+                    "-c",
+                    "while true; do date; sleep 10; done"
+                ],
+                "command": [
+                    "/bin/bash"
+                ],
+                "image": "busybox",
+                "imagePullPolicy": "Always",
+                "name": "mypod",
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-4fzs6",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "acing-multi-worker2",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-4fzs6",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T03:58:38Z",
+                "status": "False",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T03:58:35Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T03:58:35Z",
+                "reason": "PodFailed",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T03:58:35Z",
+                "reason": "PodFailed",
+                "status": "False",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-03-26T03:58:35Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://4962bdc43657a1bb83b251375d799456b3a5727fc6efb8107a4c1de3bd64c878",
+                "image": "docker.io/library/busybox:latest",
+                "imageID": "docker.io/library/busybox@sha256:650fd573e056b679a5110a70aabeb01e26b76e545ec4b9c70a9523f2dfaf18c6",
+                "lastState": {},
+                "name": "mypod",
+                "ready": false,
+                "restartCount": 0,
+                "started": false,
+                "state": {
+                    "terminated": {
+                        "containerID": "containerd://4962bdc43657a1bb83b251375d799456b3a5727fc6efb8107a4c1de3bd64c878",
+                        "exitCode": 128,
+                        "finishedAt": "2024-03-26T03:58:37Z",
+                        "message": "failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: \"/bin/bash\": stat /bin/bash: no such file or directory: unknown",
+                        "reason": "StartError",
+                        "startedAt": "1970-01-01T00:00:00Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "172.18.0.6",
+        "hostIPs": [
+            {
+                "ip": "172.18.0.6"
+            }
+        ],
+        "phase": "Failed",
+        "podIP": "10.244.1.4",
+        "podIPs": [
+            {
+                "ip": "10.244.1.4"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "startTime": "2024-03-26T03:58:35Z"
+    }
+}
