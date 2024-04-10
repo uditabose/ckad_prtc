@@ -107,13 +107,108 @@ kubectl create -f "002-01-pod.yaml" --namespace=ckad
 
 ## 6. Open shell
 
+Open a shell for the nginx container and inspect the contents of the current directory `ls -l`.
+
+```bash
+kubectl -n ckad  exec  -it nginx-002 -- /bin/bash
+# root@nginx-002:/# 
+
+root@nginx-002:/# ls -l
+
+# total 64
+# drwxr-xr-x   1 root root 4096 May 15  2020 bin
+# drwxr-xr-x   2 root root 4096 May  2  2020 boot
+# drwxr-xr-x   5 root root  360 Apr 10 14:52 dev
+# drwxr-xr-x   1 root root 4096 Apr 10 14:52 etc
+# drwxr-xr-x   2 root root 4096 May  2  2020 home
+# drwxr-xr-x   1 root root 4096 May 15  2020 lib
+# drwxr-xr-x   2 root root 4096 May 14  2020 media
+# drwxr-xr-x   2 root root 4096 May 14  2020 mnt
+# drwxr-xr-x   2 root root 4096 May 14  2020 opt
+# dr-xr-xr-x 267 root root    0 Apr 10 14:52 proc
+# drwx------   2 root root 4096 May 14  2020 root
+# drwxr-xr-x   1 root root 4096 Apr 10 14:52 run
+# drwxr-xr-x   2 root root 4096 May 14  2020 sbin
+# drwxr-xr-x   2 root root 4096 May 14  2020 srv
+# dr-xr-xr-x  11 root root    0 Apr 10 14:52 sys
+# drwxrwxrwt   1 root root 4096 May 15  2020 tmp
+# drwxr-xr-x   1 root root 4096 May 14  2020 usr
+# drwxr-xr-x   1 root root 4096 May 14  2020 var
+# root@nginx-002:/# 
+```
+
 
 ## 7. Create YAML for Pod named Pool
 
 
+Create YAML manifest for a Pod named `loop` that runs the `busybox` image in a container. The container should run the following command 
+
+```bash
+for i in {1..10}; do echo "Welcome $i times"
+```
+
+```bash
+kubectl run loop --image=busybox:latest -o yaml --dry-run=client \
+ --restart=Never -- /bin/sh -c 'for i in 1 2 3 4 5 6 7 8 9 10; \
+ do echo "Welcome $i times"; done' \
+ > 002-07-pod.yaml
+```
+
+---
+
+```bash
+kubectl create -f 002-07-pod.yaml --namespace=ckad
+
+kubectl get pods loop --namespace=ckad
+# NAME   READY   STATUS               RESTARTS   AGE
+# loop   0/1     ContainerCannotRun   0          4s
+```
+
 ## 8. Edit the Pod named Pool
 
+Edit the Pod named `loop`. Change the command run in an endless loop.Each iteration should `echo` the current date
+
+```bash
+# clean up first
+kubectl delete pods loop --namespace=ckad --grace-period=0 --force
+
+kubectl run loop --image=busybox:latest --restart=Never \
+ --dry-run=client -o yaml -- /bin/sh -c \
+ 'while [ 1 -eq 1 ]; do date; done' \
+> 002-08-pod.yaml
+```
+
+---
+
+```bash
+kubectl create -f 002-08-pod.yaml --namespace=ckad
+
+kubectl logs  loop -n ckad
+# Wed Apr 10 20:52:31 UTC 2024
+# Wed Apr 10 20:52:41 UTC 2024
+# Wed Apr 10 20:52:51 UTC 2024
+# Wed Apr 10 20:53:01 UTC 2024
+# Wed Apr 10 20:53:11 UTC 2024
+# Wed Apr 10 20:53:21 UTC 2024
+# Wed Apr 10 20:53:31 UTC 2024
+# Wed Apr 10 20:53:41 UTC 2024
+# Wed Apr 10 20:53:51 UTC 2024
+# Wed Apr 10 20:54:01 UTC 2024
+# Wed Apr 10 20:54:11 UTC 2024
+```
 
 ## 9. Inspect the events
 
+Inspect the events and the status of the Pod `loop`.
+
+```bash
+kubectl describe pods/loop --namespace=ckad | tee 002-08-pod-describe.txt
+```
+
 ## 10. Delete the namespace
+
+Delete the namespace `ckad` and its Pods.
+
+```bash
+kubectl delete namespace ckad --force --grace-period=0
+```
