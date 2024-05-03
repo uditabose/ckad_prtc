@@ -12,6 +12,10 @@ Describes details of config map
     - [Single file with key-value, env file](#single-file-with-key-value-env-file)
     - [Single text file](#single-text-file)
     - [From a directory](#from-a-directory)
+    - [From yaml](#from-yaml)
+  - [Consume ConfigMap as Environment variable](#consume-configmap-as-environment-variable)
+    - [Manipulated config names](#manipulated-config-names)
+    - [Mount ConfigMap as Volume](#mount-configmap-as-volume)
 
 
 ## From where
@@ -138,7 +142,7 @@ configmap/dir-config created
 ---
 
 ```bash
- kubectl describe configmap dir-config
+kubectl describe configmap dir-config
 Name:         dir-config
 Namespace:    default
 Labels:       <none>
@@ -171,3 +175,132 @@ BinaryData
 
 Events:  <none>
 ```
+
+### From yaml
+
+```bash
+kubectl create -f config.yaml
+configmap/yaml-config created
+```
+
+---
+
+```bash
+kubectl describe configmap yaml-config
+Name:         yaml-config
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+lala:
+----
+palooza
+
+BinaryData
+====
+
+Events:  <none>
+
+```
+
+## Consume ConfigMap as Environment variable
+
+```bash
+kubectl create -f configmap_pod.yaml
+pod/configmap-pod created
+```
+
+---
+
+```bash
+kubectl get pods configmap-pod -o yaml 2>&1 | tee configmap-pod-dump.yaml
+```
+
+```bash
+kubectl exec configmap-pod -- env
+----
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=configmap-pod
+lala=palooza
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+NGINX_VERSION=1.19.0
+NJS_VERSION=0.4.1
+PKG_RELEASE=1~buster
+HOME=/root
+```
+
+### Manipulated config names
+
+```bash
+kubectl create -f configmap-mani-pod.yaml
+pod/configmap-mani-pod created
+```
+
+---
+
+```bash
+kubectl exec configmap-mani-pod -- env
+----
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=configmap-mani-pod
+DB_URL="localhost"
+DB_USER="postgres"
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+NGINX_VERSION=1.19.0
+NJS_VERSION=0.4.1
+PKG_RELEASE=1~buster
+HOME=/root
+```
+
+### Mount ConfigMap as Volume
+
+```bash
+kubectl create -f configmap-mani-pod-mounted.yaml
+pod/configmap-mani-pod-mounted created
+```
+
+---
+
+```bash
+kubectl exec -it configmap-mani-pod-mounted -- /bin/bash
+
+---
+
+root@configmap-mani-pod-mounted:/# ls -l /etc/config/
+total 0
+lrwxrwxrwx 1 root root 11 Apr 27 23:03 lala -> ..data/lala
+root@configmap-mani-pod-mounted:/# ls -l /etc/config/
+
+root@configmap-mani-pod-mounted:/# ls -la /etc/config/
+total 16
+drwxrwxrwx 3 root root 4096 Apr 27 23:03 .
+drwxr-xr-x 1 root root 4096 Apr 27 23:03 ..
+drwxr-xr-x 2 root root 4096 Apr 27 23:03 ..2024_04_27_23_03_24.3513899712
+lrwxrwxrwx 1 root root   32 Apr 27 23:03 ..data -> ..2024_04_27_23_03_24.3513899712
+lrwxrwxrwx 1 root root   11 Apr 27 23:03 lala -> ..data/lala
+
+root@configmap-mani-pod-mounted:/# ls -l /etc/config/lala
+lrwxrwxrwx 1 root root 11 Apr 27 23:03 /etc/config/lala -> ..data/lala
+
+root@configmap-mani-pod-mounted:/# cat /etc/config/lala
+paloozaroot@configmap-mani-pod-mounted:/# cat /etc/config/lala
+```
+

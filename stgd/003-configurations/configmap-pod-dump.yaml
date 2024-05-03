@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-04-27T22:22:26Z"
+  labels:
+    name: configmap-pod
+  name: configmap-pod
+  namespace: default
+  resourceVersion: "17006"
+  uid: b719b58a-8286-4737-82de-ff4c8d4bf04e
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: yaml-config
+    image: nginx:1.19.0
+    imagePullPolicy: IfNotPresent
+    name: configmap-pod
+    ports:
+    - containerPort: 9090
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 500m
+        memory: 128Mi
+      requests:
+        cpu: 500m
+        memory: 128Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-twdbj
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: docker-desktop
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-twdbj
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-27T22:22:31Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-27T22:22:26Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-27T22:22:31Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-27T22:22:31Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-27T22:22:26Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://0f604685558eee26559e17aca453eb459ed1d95dc90f1967c2574b15687a78bd
+    image: nginx:1.19.0
+    imageID: docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    lastState: {}
+    name: configmap-pod
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-04-27T22:22:30Z"
+  hostIP: 192.168.65.3
+  hostIPs:
+  - ip: 192.168.65.3
+  phase: Running
+  podIP: 10.1.0.42
+  podIPs:
+  - ip: 10.1.0.42
+  qosClass: Guaranteed
+  startTime: "2024-04-27T22:22:26Z"

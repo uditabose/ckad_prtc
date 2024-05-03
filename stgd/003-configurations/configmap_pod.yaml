@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+  labels:
+    name: configmap-pod
+spec:
+  containers:
+  - name: configmap-pod
+    image: nginx:1.19.0
+    envFrom:
+    - configMapRef:
+        name: yaml-config
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9090
