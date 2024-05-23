@@ -8,10 +8,9 @@ Reduce attack vector
 - set access to user and group
 - granting some access to a process but not all of the root-user
 
-## Table of content
+## Table of content  <!-- omit in toc -->
 
 - [Security Context](#security-context)
-  - [Table of content](#table-of-content)
   - [Create non-root Pod](#create-non-root-pod)
   - [Create Pod with filesystem group](#create-pod-with-filesystem-group)
 

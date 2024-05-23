@@ -3,10 +3,9 @@
 
 Describes details of config map
 
-## Table of content
+## Table of content  <!-- omit in toc -->
 
 - [Creating ConfigMap](#creating-configmap)
-  - [Table of content](#table-of-content)
   - [From where](#from-where)
     - [Literal values](#literal-values)
     - [Single file with key-value, env file](#single-file-with-key-value-env-file)

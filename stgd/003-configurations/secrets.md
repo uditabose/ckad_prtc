@@ -1,9 +1,8 @@
 # Creating Secret
 
-## Table of content
+## Table of content  <!-- omit in toc -->
 
 - [Creating Secret](#creating-secret)
-  - [Table of content](#table-of-content)
   - [Types](#types)
   - [From where](#from-where)
     - [Literal valus](#literal-valus)

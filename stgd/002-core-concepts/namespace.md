@@ -1,9 +1,8 @@
 # Namespace
 
-## Table of contents
+## Table of contents  <!-- omit in toc -->
 
 - [Namespace](#namespace)
-  - [Table of contents](#table-of-contents)
   - [See the Namespaces](#see-the-namespaces)
   - [Create a Namespace](#create-a-namespace)
     - [Verify the Namespace](#verify-the-namespace)
