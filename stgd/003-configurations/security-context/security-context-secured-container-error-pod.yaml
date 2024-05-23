@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root
+spec:
+  containers:
+  - name: secured-container
+    image: nginx:1.18.0
+    securityContext:
+      runAsNonRoot: true
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9996

@@ -1,0 +1,58 @@
+Name:             non-root
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Wed, 22 May 2024 21:40:17 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               10.1.0.57
+IPs:
+  IP:  10.1.0.57
+Containers:
+  secured-container:
+    Container ID:   
+    Image:          nginx:1.18.0
+    Image ID:       
+    Port:           9996/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CreateContainerConfigError
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ll8kj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-ll8kj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  78s                default-scheduler  Successfully assigned default/non-root to docker-desktop
+  Normal   Pulling    78s                kubelet            Pulling image "nginx:1.18.0"
+  Normal   Pulled     75s                kubelet            Successfully pulled image "nginx:1.18.0" in 2.694s (2.694s including waiting)
+  Warning  Failed     10s (x7 over 75s)  kubelet            Error: container has runAsNonRoot and image will run as root (pod: "non-root_default(9e05cfca-5c98-4c27-a7f4-81d93285c1c4)", container: secured-container)
+  Normal   Pulled     10s (x6 over 75s)  kubelet            Container image "nginx:1.18.0" already present on machine

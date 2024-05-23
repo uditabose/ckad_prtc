@@ -1,0 +1,56 @@
+Name:             fs-secured
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Wed, 22 May 2024 22:34:34 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.58
+IPs:
+  IP:  10.1.0.58
+Containers:
+  secured-container:
+    Container ID:   docker://923282a060e43538534484648c9735e6d88e23cfea68b24e35a01585bdb5e6db
+    Image:          nginx:1.18.0
+    Image ID:       docker-pullable://nginx@sha256:e90ac5331fe095cea01b121a3627174b2e33e06e83720e9a934c7b8ccc9c55a0
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 22 May 2024 22:34:35 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /data/app from data-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5flcp (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  data-volume:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-5flcp:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  34s   default-scheduler  Successfully assigned default/fs-secured to docker-desktop
+  Normal  Pulled     33s   kubelet            Container image "nginx:1.18.0" already present on machine
+  Normal  Created    33s   kubelet            Created container secured-container
+  Normal  Started    33s   kubelet            Started container secured-container
