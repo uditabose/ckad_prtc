@@ -13,6 +13,7 @@ Reduce attack vector
 - [Security Context](#security-context)
   - [Create non-root Pod](#create-non-root-pod)
   - [Create Pod with filesystem group](#create-pod-with-filesystem-group)
+  - [Teardown](#teardown)
 
 ## Create non-root Pod
 
@@ -54,3 +55,11 @@ total 0
 root@fs-secured:/# 
 ```
 
+## Teardown
+
+```bash
+kubectl delete namespace team-awesome --force --grace-period=0
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+namespace "team-awesome" force deleted
+ 
+```
