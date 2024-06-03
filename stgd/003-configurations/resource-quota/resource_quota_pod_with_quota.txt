@@ -1,0 +1,60 @@
+Name:             awesome-quota-pod
+Namespace:        team-awesome
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sat, 01 Jun 2024 12:25:02 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               
+IPs:              <none>
+Containers:
+  awesome-quota-pod:
+    Container ID:   
+    Image:          nginx:1.18.0
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  1024m
+    Requests:
+      cpu:        500m
+      memory:     512m
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhhcl (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-vhhcl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason       Age   From               Message
+  ----     ------       ----  ----               -------
+  Normal   Scheduled    62s   default-scheduler  Successfully assigned team-awesome/awesome-quota-pod to docker-desktop
+  Warning  FailedMount  62s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_02.3201816924/ca.crt: no space left on device
+  Warning  FailedMount  61s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_03.1955285478/token: no space left on device
+  Warning  FailedMount  60s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_04.117887159/namespace: no space left on device
+  Warning  FailedMount  58s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_06.3304385405/ca.crt: no space left on device
+  Warning  FailedMount  54s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_10.3728163907/ca.crt: no space left on device
+  Warning  FailedMount  46s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_18.2288981955/ca.crt: no space left on device
+  Warning  FailedMount  30s   kubelet            MountVolume.SetUp failed for volume "kube-api-access-vhhcl" : write /var/lib/kubelet/pods/dd85c2b6-0a31-41d1-b248-6a220c2e459b/volumes/kubernetes.io~projected/kube-api-access-vhhcl/..2024_06_01_16_25_34.313176264/token: no space left on device
