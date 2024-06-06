@@ -1,0 +1,86 @@
+Name:             business-app
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Thu, 06 Jun 2024 12:35:46 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.109
+IPs:
+  IP:  10.1.0.109
+Init Containers:
+  configurer:
+    Container ID:  docker://d6f3bdd3fb5259caf84b8059c9a1072fd80974b8de3b6ef1933dd4dc78a03873
+    Image:         busybox:1.32.0
+    Image ID:      docker-pullable://busybox@sha256:bde48e1751173b709090c2539fdf12d6ba64e88ec7a4301591227ce925f3c678
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      echo Configuring application... && mkdir -p /usr/shared/app && echo -e '{"dbConfig": {"host": "localhost", "port": "5432", "dbName": "customers"}}' > /usr/shared/app/config.json
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 06 Jun 2024 12:35:47 -0400
+      Finished:     Thu, 06 Jun 2024 12:35:47 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /usr/shared/app from configdir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-x2g25 (ro)
+Containers:
+  web:
+    Container ID:   docker://682a6c1eff31fa88af854cb8dfc0a8e3e0b742c76db7c109ae3842eb541d0184
+    Image:          bmuschko/nodejs-read-config:1.0.0
+    Image ID:       docker-pullable://bmuschko/nodejs-read-config@sha256:ffa57f072c470e76dbc44d9c8845b209909fed3a3e308ab1295d17c845a8ed0c
+    Port:           9393/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:35:48 -0400
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:        500m
+      memory:     512Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-x2g25 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  configdir:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-x2g25:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  6s    default-scheduler  Successfully assigned default/business-app to docker-desktop
+  Normal  Pulled     6s    kubelet            Container image "busybox:1.32.0" already present on machine
+  Normal  Created    6s    kubelet            Created container configurer
+  Normal  Started    6s    kubelet            Started container configurer
+  Normal  Pulled     5s    kubelet            Container image "bmuschko/nodejs-read-config:1.0.0" already present on machine
+  Normal  Created    5s    kubelet            Created container web
+  Normal  Started    5s    kubelet            Started container web
