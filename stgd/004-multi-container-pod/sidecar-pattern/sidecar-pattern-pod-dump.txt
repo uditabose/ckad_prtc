@@ -1,0 +1,78 @@
+Name:             webserver
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Thu, 06 Jun 2024 23:09:57 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.110
+IPs:
+  IP:  10.1.0.110
+Containers:
+  nginx:
+    Container ID:   docker://d94c82b0c8058a457bc833e628cd91494e7b6f8adad62671cddab6feb5782ff6
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Thu, 06 Jun 2024 23:09:57 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/log/nginx from logs-vol (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-scqkv (ro)
+  sidecar:
+    Container ID:  docker://ba1842db145143989402ac48cf703cf022a95cfbca5898a3ba5981c8c243db18
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      while true; do if [ "$(cat /var/log/nginx/error.log | grep 'error')" != "" ]; then echo 'Error discovered!'; fi; sleep 10; done
+    State:          Running
+      Started:      Thu, 06 Jun 2024 23:09:59 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/log/nginx from logs-vol (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-scqkv (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  logs-vol:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-scqkv:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  70s   default-scheduler  Successfully assigned default/webserver to docker-desktop
+  Normal  Pulled     71s   kubelet            Container image "nginx:1.19.0" already present on machine
+  Normal  Created    71s   kubelet            Created container nginx
+  Normal  Started    71s   kubelet            Started container nginx
+  Normal  Pulling    71s   kubelet            Pulling image "busybox"
+  Normal  Pulled     70s   kubelet            Successfully pulled image "busybox" in 996ms (996ms including waiting)
+  Normal  Created    70s   kubelet            Created container sidecar
+  Normal  Started    69s   kubelet            Started container sidecar

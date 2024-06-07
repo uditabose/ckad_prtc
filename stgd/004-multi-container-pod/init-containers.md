@@ -7,6 +7,7 @@ All stuff about Init containers
 - [Init Containers](#init-containers)
   - [Create Pod with 1 Init Container](#create-pod-with-1-init-container)
     - [Verify the init Pod](#verify-the-init-pod)
+  - [Teardown](#teardown)
 
 ## Create Pod with 1 Init Container
 
@@ -30,4 +31,15 @@ kubectl describe pod business-app > stgd/004-multi-container-pod/init-container/
 
 kubectl logs business-app -c configurer
 Configuring application...
+
+kubectl logs business-app -c web
+```
+
+## Teardown
+
+```bash
+kubectl delete pods/business-app --force --grace-period=0
+---
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "business-app" force deleted
 ```
