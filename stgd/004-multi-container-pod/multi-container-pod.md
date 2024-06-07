@@ -4,6 +4,10 @@
 
 - [Multi-Container Pods](#multi-container-pods)
   - [Summary](#summary)
+    - [3 patterns](#3-patterns)
+      - [Sidecar pattern](#sidecar-pattern)
+      - [Ambassador pattern](#ambassador-pattern)
+      - [Adapter pattern](#adapter-pattern)
     - [Design guidance](#design-guidance)
   - [Init Container](#init-container)
 
@@ -15,6 +19,22 @@ Following concepts are covered
 - Container
 - Volume
 - Design Patterns
+
+### 3 patterns
+
+Multi-container design patterns
+
+#### Sidecar pattern
+
+An extra container in your pod to enhance or extend the functionality of the main container.
+
+#### Ambassador pattern
+
+A container that proxy the network connection to the main container.
+
+#### Adapter pattern
+
+A container that transform output of the main container.
 
 ### Design guidance
 
