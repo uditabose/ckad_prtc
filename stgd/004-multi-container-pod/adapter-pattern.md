@@ -53,4 +53,7 @@ Fri Jun  7 16:36:20 UTC 2024 | 8.0K     /root
 
 ```bash
 kubectl delete pods/adapter --force --grace-period=0
+---
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "adapter" force deleted
 ```

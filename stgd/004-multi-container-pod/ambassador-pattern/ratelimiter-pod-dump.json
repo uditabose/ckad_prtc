@@ -1,0 +1,203 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2024-06-07T17:38:29Z",
+        "name": "rate-limiter",
+        "namespace": "default",
+        "resourceVersion": "1046172",
+        "uid": "ca7135a5-100b-424c-b4c7-cd2be88abb94"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "bmuschko/nodejs-business-app:1.0.0",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "business-app",
+                "ports": [
+                    {
+                        "containerPort": 9090,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-f9hd6",
+                        "readOnly": true
+                    }
+                ]
+            },
+            {
+                "image": "bmuschko/nodejs-ambassador:1.0.0",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "ambassador",
+                "ports": [
+                    {
+                        "containerPort": 9091,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-f9hd6",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "docker-desktop",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-f9hd6",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-07T17:38:43Z",
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-07T17:38:29Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-07T17:38:43Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-07T17:38:43Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-07T17:38:29Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://95b630f1d9671917c8a1a7a4923fbc84239e469762147222140a526fb0f0f2fd",
+                "image": "bmuschko/nodejs-ambassador:1.0.0",
+                "imageID": "docker-pullable://bmuschko/nodejs-ambassador@sha256:eacf208bf8d415a5de60aa2813110d559319dc0befccfcb7c4a22c7ed45e8651",
+                "lastState": {},
+                "name": "ambassador",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2024-06-07T17:38:42Z"
+                    }
+                }
+            },
+            {
+                "containerID": "docker://b17ee45dd9c389210c98fac5df48d4661aa64bf2dcdd0210a3051ef22b6845b0",
+                "image": "bmuschko/nodejs-business-app:1.0.0",
+                "imageID": "docker-pullable://bmuschko/nodejs-business-app@sha256:63d3754b6a201057dd6d1559a2060caeb9a62ce431b0440108c5b38fbf359302",
+                "lastState": {},
+                "name": "business-app",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2024-06-07T17:38:41Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "192.168.65.3",
+        "hostIPs": [
+            {
+                "ip": "192.168.65.3"
+            }
+        ],
+        "phase": "Running",
+        "podIP": "10.1.0.112",
+        "podIPs": [
+            {
+                "ip": "10.1.0.112"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "startTime": "2024-06-07T17:38:29Z"
+    }
+}

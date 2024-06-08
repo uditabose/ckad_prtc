@@ -10,6 +10,7 @@
       - [Adapter pattern](#adapter-pattern)
     - [Design guidance](#design-guidance)
   - [Init Container](#init-container)
+  - [Details](#details)
 
 ## Summary
 
@@ -46,3 +47,9 @@ A container that transform output of the main container.
 
 - If any init cont fails, whole Pod is restarted
 - make init conts idempotent
+
+## Details
+
+- [Sidecar](/stgd/004-multi-container-pod/sidecar-pattern.md)
+- [Adapter](/stgd/004-multi-container-pod/adapter-pattern.md)
+- [Ambassador](/stgd/004-multi-container-pod/ambassador-pattern.md)
