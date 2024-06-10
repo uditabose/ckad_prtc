@@ -1,0 +1,59 @@
+Name:             readiness-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Mon, 10 Jun 2024 13:41:57 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.113
+IPs:
+  IP:  10.1.0.113
+Containers:
+  hello-world:
+    Container ID:   docker://b888fdd9149fabda49590504134095af1362b1945db2708794e15dde9f61a14c
+    Image:          bmuschko/nodejs-hello-world:1.0.0
+    Image ID:       docker-pullable://bmuschko/nodejs-hello-world@sha256:4e8e5814c76d72982669131182531ea865b28ad1bd793ed6b97f812d18f0ed76
+    Port:           3000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 10 Jun 2024 13:41:59 -0400
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Readiness:    http-get http://:nodejs-port/ delay=2s timeout=1s period=8s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8vqnt (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-8vqnt:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m12s  default-scheduler  Successfully assigned default/readiness-pod to docker-desktop
+  Normal  Pulling    4m12s  kubelet            Pulling image "bmuschko/nodejs-hello-world:1.0.0"
+  Normal  Pulled     4m11s  kubelet            Successfully pulled image "bmuschko/nodejs-hello-world:1.0.0" in 1.15s (1.15s including waiting)
+  Normal  Created    4m10s  kubelet            Created container hello-world
+  Normal  Started    4m10s  kubelet            Started container hello-world

@@ -1,0 +1,189 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2024-06-10T17:41:57Z",
+        "name": "readiness-pod",
+        "namespace": "default",
+        "resourceVersion": "1139742",
+        "uid": "14d77b78-8a99-43ab-a4dd-edfd53e73907"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "bmuschko/nodejs-hello-world:1.0.0",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "hello-world",
+                "ports": [
+                    {
+                        "containerPort": 3000,
+                        "name": "nodejs-port",
+                        "protocol": "TCP"
+                    }
+                ],
+                "readinessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/",
+                        "port": "nodejs-port",
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 2,
+                    "periodSeconds": 8,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1
+                },
+                "resources": {
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "128Mi"
+                    },
+                    "requests": {
+                        "cpu": "500m",
+                        "memory": "128Mi"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-8vqnt",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "docker-desktop",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-8vqnt",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-10T17:41:59Z",
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-10T17:41:57Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-10T17:42:05Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-10T17:42:05Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-10T17:41:57Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://b888fdd9149fabda49590504134095af1362b1945db2708794e15dde9f61a14c",
+                "image": "bmuschko/nodejs-hello-world:1.0.0",
+                "imageID": "docker-pullable://bmuschko/nodejs-hello-world@sha256:4e8e5814c76d72982669131182531ea865b28ad1bd793ed6b97f812d18f0ed76",
+                "lastState": {},
+                "name": "hello-world",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2024-06-10T17:41:59Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "192.168.65.3",
+        "hostIPs": [
+            {
+                "ip": "192.168.65.3"
+            }
+        ],
+        "phase": "Running",
+        "podIP": "10.1.0.113",
+        "podIPs": [
+            {
+                "ip": "10.1.0.113"
+            }
+        ],
+        "qosClass": "Guaranteed",
+        "startTime": "2024-06-10T17:41:57Z"
+    }
+}
