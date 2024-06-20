@@ -1,0 +1,72 @@
+Name:             liveness-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Thu, 20 Jun 2024 09:27:53 -0700
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.114
+IPs:
+  IP:  10.1.0.114
+Containers:
+  liveness-app:
+    Container ID:  docker://2842778487e0499691ec37e787cd196a5e04ae27a510283191ca72835db56b46
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+    Port:          9999/TCP
+    Host Port:     0/TCP
+    Args:
+      /bin/sh
+      -c
+      while true; do touvh /tmp/heartbeat.txt; sleep 5; done;
+    State:          Running
+      Started:      Thu, 20 Jun 2024 09:31:55 -0700
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    137
+      Started:      Thu, 20 Jun 2024 09:29:55 -0700
+      Finished:     Thu, 20 Jun 2024 09:31:54 -0700
+    Ready:          True
+    Restart Count:  2
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Liveness:     exec [test `find /tmp/heartbeat.txt -mmin -1`] delay=5s timeout=1s period=30s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wqb4p (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-wqb4p:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From               Message
+  ----     ------     ----                 ----               -------
+  Normal   Scheduled  5m                   default-scheduler  Successfully assigned default/liveness-pod to docker-desktop
+  Normal   Pulled     4m59s                kubelet            Successfully pulled image "busybox" in 992ms (992ms including waiting)
+  Normal   Pulled     2m59s                kubelet            Successfully pulled image "busybox" in 1.042s (1.042s including waiting)
+  Normal   Killing    90s (x2 over 3m30s)  kubelet            Container liveness-app failed liveness probe, will be restarted
+  Normal   Pulling    60s (x3 over 5m)     kubelet            Pulling image "busybox"
+  Normal   Created    59s (x3 over 4m59s)  kubelet            Created container liveness-app
+  Normal   Started    59s (x3 over 4m59s)  kubelet            Started container liveness-app
+  Normal   Pulled     59s                  kubelet            Successfully pulled image "busybox" in 1.013s (1.013s including waiting)
+  Warning  Unhealthy  0s (x8 over 4m30s)   kubelet            Liveness probe failed: OCI runtime exec failed: exec failed: unable to start container process: exec: "test `find /tmp/heartbeat.txt -mmin -1`": stat test `find /tmp/heartbeat.txt -mmin -1`: no such file or directory: unknown

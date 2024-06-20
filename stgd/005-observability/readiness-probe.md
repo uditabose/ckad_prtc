@@ -27,5 +27,7 @@ kubectl describe pods readiness-pod > stgd/005-observability/readiness/readiness
 ## Teardown
 
 ```bash
-kubectl delete readiness-pod --force --grace-period=0
+kubectl delete pods/readiness-pod --force --grace-period=0
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "readiness-pod" force deleted
 ```
