@@ -16,7 +16,7 @@ Following concepts are covered -
   - [Startup probe](#startup-probe)
   - [Probe commands](#probe-commands)
     - [Fine-tuning attribute](#fine-tuning-attribute)
-  - [Teardown](#teardown)
+  - [Reference](#reference)
 
 
 ## Readiness probe
@@ -49,4 +49,8 @@ Waits pre-defined period time before liveness probe to start-up.
 |successThreshold    |1  | number of checks         |
 |failureThreshold    |3  | failure checks (retry)   |
 
-## Teardown
+## Reference
+
+- [liveness](/stgd/005-observability/liveness-probe.md)
+- [readiness](/stgd/005-observability/readiness-probe.md)
+- [startup](/stgd/005-observability/startup-probe.md)

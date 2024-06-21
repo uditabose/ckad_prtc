@@ -1,0 +1,186 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2024-06-21T04:02:11Z",
+        "name": "startup-pod",
+        "namespace": "default",
+        "resourceVersion": "1468660",
+        "uid": "c50e6b52-fce4-44ec-84de-0eb0d2bb87f2"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "httpd:2.4.46",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "startup-pod-container",
+                "ports": [
+                    {
+                        "containerPort": 9999,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "128Mi"
+                    },
+                    "requests": {
+                        "cpu": "500m",
+                        "memory": "128Mi"
+                    }
+                },
+                "startupProbe": {
+                    "failureThreshold": 3,
+                    "initialDelaySeconds": 3,
+                    "periodSeconds": 15,
+                    "successThreshold": 1,
+                    "tcpSocket": {
+                        "port": 80
+                    },
+                    "timeoutSeconds": 1
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-hlw4q",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "docker-desktop",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-hlw4q",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-21T04:02:30Z",
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-21T04:02:11Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-21T04:02:41Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-21T04:02:41Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2024-06-21T04:02:11Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://01b3155bc750e3a7a9fca8e8f1e9418574f88a35be8f9cccd0b059e1317ad3ba",
+                "image": "httpd:2.4.46",
+                "imageID": "docker-pullable://httpd@sha256:e4c2b93c04762468a6cce6d507d94def02ef4dc285278d0d926e09827f4857db",
+                "lastState": {},
+                "name": "startup-pod-container",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2024-06-21T04:02:30Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "192.168.65.3",
+        "hostIPs": [
+            {
+                "ip": "192.168.65.3"
+            }
+        ],
+        "phase": "Running",
+        "podIP": "10.1.0.115",
+        "podIPs": [
+            {
+                "ip": "10.1.0.115"
+            }
+        ],
+        "qosClass": "Guaranteed",
+        "startTime": "2024-06-21T04:02:11Z"
+    }
+}
