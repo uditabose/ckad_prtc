@@ -1,0 +1,527 @@
+Name:             configmap-mani-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sat, 27 Apr 2024 18:32:43 -0400
+Labels:           name=configmap-mani-pod
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.102
+IPs:
+  IP:  10.1.0.102
+Containers:
+  configmap-mani-pod:
+    Container ID:   docker://16cab62c10e2f4b25aa443d50ba92574c80b2c9a8b7d7668dc0a6c3503873a61
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           9090/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:13 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  6
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:     500m
+      memory:  128Mi
+    Environment:
+      DB_URL:   <set to the key 'NIADA_DB_URL' of config map 'env-config'>   Optional: false
+      DB_USER:  <set to the key 'NIADA_DB_USER' of config map 'env-config'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-k629w (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-k629w:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             configmap-mani-pod-mounted
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sat, 27 Apr 2024 19:03:24 -0400
+Labels:           name=configmap-mani-pod-mounted
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.104
+IPs:
+  IP:  10.1.0.104
+Containers:
+  configmap-mani-pod-mounted:
+    Container ID:   docker://86b99e7b39c1466a3cdbf7b96dcd2b1a9dc2d2a10cb9e78ff003ca62da62d736
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           9090/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:13 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  6
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:     500m
+      memory:  128Mi
+    Environment:
+      DB_URL:   <set to the key 'NIADA_DB_URL' of config map 'env-config'>   Optional: false
+      DB_USER:  <set to the key 'NIADA_DB_USER' of config map 'env-config'>  Optional: false
+    Mounts:
+      /etc/config from config-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-nrnkw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      yaml-config
+    Optional:  false
+  kube-api-access-nrnkw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             configmap-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sat, 27 Apr 2024 18:22:26 -0400
+Labels:           name=configmap-pod
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.106
+IPs:
+  IP:  10.1.0.106
+Containers:
+  configmap-pod:
+    Container ID:   docker://f09f8f0d6db3ebd1250d6d2133c1c52dce7d43a73f9be45b416e3b2f5112aebd
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           9090/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:11 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  6
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:     500m
+      memory:  128Mi
+    Environment Variables from:
+      yaml-config  ConfigMap  Optional: false
+    Environment:   <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-twdbj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-twdbj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             fs-secured
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Wed, 22 May 2024 22:34:34 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.103
+IPs:
+  IP:  10.1.0.103
+Containers:
+  secured-container:
+    Container ID:   docker://c32aced2dcc19dbd5093b23a72812e66507f18f6875be35c716f535d8a77a253
+    Image:          nginx:1.18.0
+    Image ID:       docker-pullable://nginx@sha256:e90ac5331fe095cea01b121a3627174b2e33e06e83720e9a934c7b8ccc9c55a0
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:26 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  5
+    Environment:    <none>
+    Mounts:
+      /data/app from data-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5flcp (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  data-volume:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-5flcp:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             incorrect-cmd-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sun, 23 Jun 2024 00:28:57 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.116
+IPs:
+  IP:  10.1.0.116
+Containers:
+  test-container:
+    Container ID:  docker://b741b25ff397a277dd3c527b6a41bd55a22989f1d53d52daa27a7ee11056d1b8
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      unknown
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    127
+      Started:      Sat, 20 Jul 2024 22:15:23 -0400
+      Finished:     Sat, 20 Jul 2024 22:15:23 -0400
+    Ready:          False
+    Restart Count:  3123
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4t622 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-4t622:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason   Age                    From     Message
+  ----     ------   ----                   ----     -------
+  Warning  BackOff  85s (x57570 over 27d)  kubelet  Back-off restarting failed container test-container in pod incorrect-cmd-pod_default(89f62a37-f0e3-43c0-b4b0-62970ac6f4b2)
+
+
+Name:             nginx
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Mon, 03 Jun 2024 14:09:01 -0400
+Labels:           run=nginx
+Annotations:      <none>
+Status:           Failed
+IP:               
+IPs:              <none>
+Containers:
+  nginx:
+    Container ID:   docker://42c7853b93040fa4e94a2c483867e1f2e6e8d62cd7d6539bee86c0cdb064d181
+    Image:          nginx
+    Image ID:       docker-pullable://nginx@sha256:0f04e4f646a3f14bf31d8bc8d885b6c951fdcf42589d06845f64d18aec6a3c4d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Mon, 03 Jun 2024 14:09:05 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7pt7b (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-7pt7b:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             non-root
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Wed, 22 May 2024 21:40:17 -0400
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               10.1.0.105
+IPs:
+  IP:  10.1.0.105
+Containers:
+  secured-container:
+    Container ID:   
+    Image:          nginx:1.18.0
+    Image ID:       
+    Port:           9996/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CreateContainerConfigError
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ll8kj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-ll8kj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason  Age                     From     Message
+  ----    ------  ----                    ----     -------
+  Normal  Pulled  4m6s (x89619 over 44d)  kubelet  Container image "nginx:1.18.0" already present on machine
+
+
+Name:             secrets-mounted-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sun, 19 May 2024 17:20:23 -0400
+Labels:           name=secrets-mounted-pod
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.99
+IPs:
+  IP:  10.1.0.99
+Containers:
+  secrets-mounted-pod:
+    Container ID:   docker://d8bfe9bf818d34b91befef22f9ca5839e2a1d530072d15cd2f65cb5bfd276873
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           9997/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:12 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  4
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/app from secret-volume (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6rxqc (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  secret-volume:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  file-creds
+    Optional:    false
+  kube-api-access-6rxqc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             secrets-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sun, 19 May 2024 16:58:38 -0400
+Labels:           name=secrets-pod
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.97
+IPs:
+  IP:  10.1.0.97
+Containers:
+  secrets-pod:
+    Container ID:   docker://1cf13dbcd6ba4cf3e48603de92855518200e4ac9e1e11107b9bd4fde64f41c07
+    Image:          nginx:1.19.0
+    Image ID:       docker-pullable://nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+    Port:           9998/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 06 Jun 2024 12:15:31 -0400
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Sat, 01 Jun 2024 10:40:14 -0400
+      Finished:     Thu, 06 Jun 2024 12:15:23 -0400
+    Ready:          True
+    Restart Count:  4
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:     500m
+      memory:  128Mi
+    Environment Variables from:
+      declarative-secret  Secret  Optional: false
+    Environment:          <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-trgjq (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-trgjq:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

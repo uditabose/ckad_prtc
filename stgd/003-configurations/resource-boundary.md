@@ -80,7 +80,7 @@ cp stgd/003-configurations/resource-quota/resource_quota_pod_with_quota.yaml stg
 ---
 
 ```bash
-kubectl create -f stgd/003-configurations/resource-quota/resource_quota_pod_2_with_quota.yaml --namespace=team-awesome                                          [12:52:46]
+kubectl create -f stgd/003-configurations/resource-quota/resource_quota_pod_2_with_quota.yaml --namespace=team-awesome
 
 Warning: spec.containers[0].resources.limits[memory]: fractional byte value "1024m" is invalid, must be an integer
 Warning: spec.containers[0].resources.requests[memory]: fractional byte value "512m" is invalid, must be an integer
@@ -89,7 +89,7 @@ FAIL: 1
 
 ---
 
-kubectl create -f stgd/003-configurations/resource-quota/resource_quota_pod_3_with_quota.yaml --namespace=team-awesome                                          [12:53:08]
+kubectl create -f stgd/003-configurations/resource-quota/resource_quota_pod_3_with_quota.yaml --namespace=team-awesome
 Warning: spec.containers[0].resources.limits[memory]: fractional byte value "1024m" is invalid, must be an integer
 Warning: spec.containers[0].resources.requests[memory]: fractional byte value "512m" is invalid, must be an integer
 Error from server (Forbidden): error when creating "stgd/003-configurations/resource-quota/resource_quota_pod_3_with_quota.yaml": pods "awesome-quota-pod-3" is forbidden: exceeded quota: awesome-quota, requested: pods=1,requests.cpu=500m,requests.memory=512m, used: pods=2,requests.cpu=1,requests.memory=1024m, limited: pods=2,requests.cpu=1,requests.memory=1024m

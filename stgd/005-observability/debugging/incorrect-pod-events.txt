@@ -1,0 +1,11 @@
+LAST SEEN   TYPE      REASON      OBJECT                  MESSAGE
+3m51s       Normal    Scheduled   pod/incorrect-cmd-pod   Successfully assigned default/incorrect-cmd-pod to docker-desktop
+2m12s       Normal    Pulling     pod/incorrect-cmd-pod   Pulling image "busybox"
+3m50s       Normal    Pulled      pod/incorrect-cmd-pod   Successfully pulled image "busybox" in 979ms (979ms including waiting)
+3m6s        Normal    Created     pod/incorrect-cmd-pod   Created container test-container
+3m6s        Normal    Started     pod/incorrect-cmd-pod   Started container test-container
+3m48s       Normal    Pulled      pod/incorrect-cmd-pod   Successfully pulled image "busybox" in 945ms (945ms including waiting)
+2m27s       Warning   BackOff     pod/incorrect-cmd-pod   Back-off restarting failed container test-container in pod incorrect-cmd-pod_default(89f62a37-f0e3-43c0-b4b0-62970ac6f4b2)
+3m33s       Normal    Pulled      pod/incorrect-cmd-pod   Successfully pulled image "busybox" in 978ms (978ms including waiting)
+3m6s        Normal    Pulled      pod/incorrect-cmd-pod   Successfully pulled image "busybox" in 919ms (919ms including waiting)
+82s         Normal    Pulled      pod/non-root            Container image "nginx:1.18.0" already present on machine

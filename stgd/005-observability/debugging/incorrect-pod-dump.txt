@@ -1,0 +1,65 @@
+Name:             incorrect-cmd-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Sat, 22 Jun 2024 21:28:57 -0700
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.116
+IPs:
+  IP:  10.1.0.116
+Containers:
+  test-container:
+    Container ID:  docker://5ac681dbf7f57578393d664be7774210edfd206451c5d438e4b915b0b5f18044
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      unknown
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    127
+      Started:      Sat, 22 Jun 2024 21:30:37 -0700
+      Finished:     Sat, 22 Jun 2024 21:30:37 -0700
+    Ready:          False
+    Restart Count:  4
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4t622 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-4t622:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                   From               Message
+  ----     ------     ----                  ----               -------
+  Normal   Scheduled  2m51s                 default-scheduler  Successfully assigned default/incorrect-cmd-pod to docker-desktop
+  Normal   Pulled     2m50s                 kubelet            Successfully pulled image "busybox" in 979ms (979ms including waiting)
+  Normal   Pulled     2m48s                 kubelet            Successfully pulled image "busybox" in 945ms (945ms including waiting)
+  Normal   Pulled     2m33s                 kubelet            Successfully pulled image "busybox" in 978ms (978ms including waiting)
+  Normal   Created    2m6s (x4 over 2m50s)  kubelet            Created container test-container
+  Normal   Started    2m6s (x4 over 2m50s)  kubelet            Started container test-container
+  Normal   Pulled     2m6s                  kubelet            Successfully pulled image "busybox" in 919ms (919ms including waiting)
+  Warning  BackOff    87s (x8 over 2m47s)   kubelet            Back-off restarting failed container test-container in pod incorrect-cmd-pod_default(89f62a37-f0e3-43c0-b4b0-62970ac6f4b2)
+  Normal   Pulling    72s (x5 over 2m51s)   kubelet            Pulling image "busybox"
