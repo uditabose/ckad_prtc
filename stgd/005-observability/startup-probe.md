@@ -1,4 +1,4 @@
-                  # Startup Probe
+# Startup Probe
 
 Purpose is t figure out when the application fully started.
 
@@ -9,9 +9,10 @@ Two conditions -
 
 ## Table of Content  <!-- omit in toc -->
 
-- [Pod with Startup probe](#pod-with-startup-probe)
-- [Verify](#verify)
-- [Teardown](#teardown)
+- [Startup Probe](#startup-probe)
+  - [Pod with Startup probe](#pod-with-startup-probe)
+  - [Verify](#verify)
+  - [Teardown](#teardown)
 
 ## Pod with Startup probe
 
