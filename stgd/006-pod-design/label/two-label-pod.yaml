@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: two-labeled-pod
+  labels:
+    env: dev
+    tier: backend
+spec:
+  containers:
+  - name: two-labeled-pod
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9797
