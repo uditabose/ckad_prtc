@@ -1,0 +1,70 @@
+Name:             annotated-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Thu, 25 Jul 2024 22:43:18 -0400
+Labels:           what=annotation
+Annotations:      author: Papa Bosu
+                  branch: ckad_prtc/main
+                  commit: 3ba0d44
+Status:           Running
+IP:               10.1.0.131
+IPs:
+  IP:  10.1.0.131
+Containers:
+  annotated-pod:
+    Container ID:   docker://16402b2a331fe832a334981b896be2918a33b4fd81c4bfb7a859427c74e50b36
+    Image:          busybox
+    Image ID:       docker-pullable://busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+    Port:           9797/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 25 Jul 2024 22:44:47 -0400
+      Finished:     Thu, 25 Jul 2024 22:44:47 -0400
+    Ready:          False
+    Restart Count:  4
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        500m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tj26p (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-tj26p:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  116s                default-scheduler  Successfully assigned default/annotated-pod to docker-desktop
+  Normal   Pulled     116s                kubelet            Successfully pulled image "busybox" in 294ms (294ms including waiting)
+  Normal   Pulled     115s                kubelet            Successfully pulled image "busybox" in 229ms (229ms including waiting)
+  Normal   Pulled     104s                kubelet            Successfully pulled image "busybox" in 264ms (264ms including waiting)
+  Normal   Created    78s (x4 over 116s)  kubelet            Created container annotated-pod
+  Normal   Started    78s (x4 over 116s)  kubelet            Started container annotated-pod
+  Normal   Pulled     78s                 kubelet            Successfully pulled image "busybox" in 285ms (285ms including waiting)
+  Warning  BackOff    40s (x7 over 114s)  kubelet            Back-off restarting failed container annotated-pod in pod annotated-pod_default(a7dcef05-b607-4a98-87a0-81134d8da146)
+  Normal   Pulling    27s (x5 over 116s)  kubelet            Pulling image "busybox"
+  Normal   Pulled     27s                 kubelet            Successfully pulled image "busybox" in 325ms (325ms including waiting)
