@@ -1,0 +1,34 @@
+Name:                   second-deploy
+Namespace:              default
+CreationTimestamp:      Fri, 26 Jul 2024 13:58:17 -0400
+Labels:                 app=second-deploy
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=second-deploy
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=second-deploy
+  Containers:
+   second-deploy:
+    Image:      nginx:1.14.2
+    Port:       9797/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:        500m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   second-deploy-79479b98d (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  38s   deployment-controller  Scaled up replica set second-deploy-79479b98d to 1

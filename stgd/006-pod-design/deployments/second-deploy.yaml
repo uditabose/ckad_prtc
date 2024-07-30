@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-deploy
+  labels:
+    app: second-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second-deploy
+  template:
+    metadata:
+      labels:
+        app: second-deploy
+    spec:
+      containers:
+      - name: second-deploy
+        image: nginx:1.14.2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9797

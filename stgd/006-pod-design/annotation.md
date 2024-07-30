@@ -8,6 +8,7 @@ Key-value pair to add metadata. Can't bet used in query.
   - [Declare Annotation](#declare-annotation)
     - [Inspect pod with annotation](#inspect-pod-with-annotation)
   - [Modify annotation](#modify-annotation)
+  - [Teardown](#teardown)
 
 ## Declare Annotation
 
@@ -54,4 +55,11 @@ kubectl get pod/annotated-pod -o json | jq .metadata.annotations
   "branch": "ckad_prtc/main",
   "commit": "3ba0d44"
 }
+```
+
+## Teardown
+
+```bash
+kubectl delete pod/annotated-pod --force --grace-period=0
+pod "annotated-pod" force deleted
 ```

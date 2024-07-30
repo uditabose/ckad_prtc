@@ -1,0 +1,31 @@
+Name:                   first-deploy
+Namespace:              default
+CreationTimestamp:      Fri, 26 Jul 2024 13:45:00 -0400
+Labels:                 app=first-deploy
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=first-deploy
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=first-deploy
+  Containers:
+   nginx:
+    Image:        nginx:1.14.2
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   first-deploy-679649688f (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  86s   deployment-controller  Scaled up replica set first-deploy-679649688f to 1
