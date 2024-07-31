@@ -18,3 +18,4 @@
 - [Label](/stgd/006-pod-design/label.md)
 - [Annotation](/stgd/006-pod-design/annotation.md)
 - [Deployment](/stgd/006-pod-design/deployment.md)
+- [Scaling](/stgd/006-pod-design/scaling.md)

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scaling-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scaling-deploy
+  template:
+    metadata:
+      labels:
+        app: scaling-deploy
+    spec:
+      containers:
+      - name: scaling-deploy
+        image: nginx:1.14.2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9797

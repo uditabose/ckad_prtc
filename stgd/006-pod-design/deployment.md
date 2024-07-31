@@ -13,6 +13,8 @@ to replicate a guaranteed number of Pods with s
   - [Get all deployments](#get-all-deployments)
   - [Rolling out a new revision](#rolling-out-a-new-revision)
     - [Verify rollout](#verify-rollout)
+  - [Rolling back](#rolling-back)
+    - [Verify rolling back](#verify-rolling-back)
   - [Teardown](#teardown)
 
 ## Create Deployment via Command-line
@@ -82,6 +84,70 @@ REVISION  CHANGE-CAUSE
 2         <none>
 ```
 
+```bash
+kubectl rollout status deployment second-deploy
+deployment "second-deploy" successfully rolled out
+```
+
+```bash
+kubectl rollout history deployment second-deploy --revision=2
+---
+deployment.apps/second-deploy with revision #2
+Pod Template:
+  Labels:       app=second-deploy
+        pod-template-hash=7bc85ccc49
+  Containers:
+   second-deploy:
+    Image:      nginx:1.19.2
+    Port:       9797/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:      500m
+      memory:   128Mi
+    Environment:        <none>
+    Mounts:     <none>
+  Volumes:      <none>  
+```
+
+## Rolling back
+
+```bash
+kubectl rollout undo deployment second-deploy --to-revision=1
+deployment.apps/second-deploy rolled back
+```
+
+### Verify rolling back
+
+```bash
+kubectl rollout history deployment second-deploy
+---
+deployment.apps/second-deploy 
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+```
+
+```bash
+
+kubectl rollout history deployment second-deploy --revision=3
+deployment.apps/second-deploy with revision #3
+Pod Template:
+  Labels:       app=second-deploy
+        pod-template-hash=79479b98d
+  Containers:
+   second-deploy:
+    Image:      nginx:1.14.2
+    Port:       9797/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:      500m
+      memory:   128Mi
+    Environment:        <none>
+    Mounts:     <none>
+  Volumes:      <none>
+
+```
+
 ## Teardown
 
 ```bash
@@ -92,5 +158,3 @@ deployment.apps "first-deploy" force deleted
 kubectl delete deployments/second-deploy --force --grace-period=0
 deployment.apps "second-deploy" force deleted
 ```
-
-
