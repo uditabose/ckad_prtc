@@ -109,4 +109,7 @@ Cloud providers provide this.
 
 ```bash
 kubectl delete deployment.apps/scaling-deploy --force --grace-period=0
+---
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+deployment.apps "scaling-deploy" force deleted
 ```

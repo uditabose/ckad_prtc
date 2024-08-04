@@ -1,0 +1,60 @@
+Name:                          dating-cronjob
+Namespace:                     default
+Labels:                        <none>
+Annotations:                   <none>
+Schedule:                      * * * * *
+Concurrency Policy:            Allow
+Suspend:                       False
+Successful Job History Limit:  3
+Failed Job History Limit:      1
+Starting Deadline Seconds:     <unset>
+Selector:                      <unset>
+Parallelism:                   3
+Completions:                   4
+Pod Template:
+  Labels:  <none>
+  Containers:
+   hello:
+    Image:      busybox:1.28
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /bin/sh
+      -c
+      date; echo Hello from the Kubernetes cluster
+    Environment:     <none>
+    Mounts:          <none>
+  Volumes:           <none>
+Last Schedule Time:  Wed, 31 Jul 2024 22:58:00 -0400
+Active Jobs:         <none>
+Events:
+  Type    Reason            Age                    From                Message
+  ----    ------            ----                   ----                -------
+  Normal  SuccessfulCreate  19m                    cronjob-controller  Created job dating-cronjob-28707999
+  Normal  SawCompletedJob   19m                    cronjob-controller  Saw completed job: dating-cronjob-28707999, status: Complete
+  Normal  SuccessfulCreate  18m                    cronjob-controller  Created job dating-cronjob-28708000
+  Normal  SawCompletedJob   18m                    cronjob-controller  Saw completed job: dating-cronjob-28708000, status: Complete
+  Normal  SuccessfulCreate  17m                    cronjob-controller  Created job dating-cronjob-28708001
+  Normal  SawCompletedJob   17m                    cronjob-controller  Saw completed job: dating-cronjob-28708001, status: Complete
+  Normal  SuccessfulCreate  16m                    cronjob-controller  Created job dating-cronjob-28708002
+  Normal  SuccessfulDelete  16m                    cronjob-controller  Deleted job dating-cronjob-28707999
+  Normal  SawCompletedJob   16m                    cronjob-controller  Saw completed job: dating-cronjob-28708002, status: Complete
+  Normal  SuccessfulCreate  15m                    cronjob-controller  Created job dating-cronjob-28708003
+  Normal  SuccessfulDelete  15m                    cronjob-controller  Deleted job dating-cronjob-28708000
+  Normal  SawCompletedJob   15m                    cronjob-controller  Saw completed job: dating-cronjob-28708003, status: Complete
+  Normal  SuccessfulCreate  14m                    cronjob-controller  Created job dating-cronjob-28708004
+  Normal  SuccessfulDelete  14m                    cronjob-controller  Deleted job dating-cronjob-28708001
+  Normal  SawCompletedJob   14m                    cronjob-controller  Saw completed job: dating-cronjob-28708004, status: Complete
+  Normal  SuccessfulCreate  13m                    cronjob-controller  Created job dating-cronjob-28708005
+  Normal  SuccessfulDelete  13m                    cronjob-controller  Deleted job dating-cronjob-28708002
+  Normal  SawCompletedJob   13m                    cronjob-controller  Saw completed job: dating-cronjob-28708005, status: Complete
+  Normal  SuccessfulCreate  12m                    cronjob-controller  Created job dating-cronjob-28708006
+  Normal  SuccessfulDelete  12m                    cronjob-controller  Deleted job dating-cronjob-28708003
+  Normal  SawCompletedJob   12m                    cronjob-controller  Saw completed job: dating-cronjob-28708006, status: Complete
+  Normal  SuccessfulCreate  11m                    cronjob-controller  Created job dating-cronjob-28708007
+  Normal  SuccessfulDelete  11m                    cronjob-controller  Deleted job dating-cronjob-28708004
+  Normal  SawCompletedJob   11m                    cronjob-controller  Saw completed job: dating-cronjob-28708007, status: Complete
+  Normal  SuccessfulCreate  10m                    cronjob-controller  (combined from similar events): Created job dating-cronjob-28708008
+  Normal  SuccessfulDelete  10m                    cronjob-controller  Deleted job dating-cronjob-28708005
+  Normal  SuccessfulDelete  9m34s                  cronjob-controller  Deleted job dating-cronjob-28708006
+  Normal  SuccessfulDelete  4m35s (x4 over 7m35s)  cronjob-controller  (combined from similar events): Deleted job dating-cronjob-28708011

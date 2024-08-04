@@ -1,0 +1,59 @@
+{
+    "apiVersion": "batch/v1",
+    "kind": "CronJob",
+    "metadata": {
+        "creationTimestamp": "2024-08-01T02:38:33Z",
+        "generation": 1,
+        "name": "dating-cronjob",
+        "namespace": "default",
+        "resourceVersion": "2920244",
+        "uid": "5694acf2-d516-4b63-bde3-9103c74f6758"
+    },
+    "spec": {
+        "concurrencyPolicy": "Allow",
+        "failedJobsHistoryLimit": 1,
+        "jobTemplate": {
+            "metadata": {
+                "creationTimestamp": null
+            },
+            "spec": {
+                "completions": 4,
+                "parallelism": 3,
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "command": [
+                                    "/bin/sh",
+                                    "-c",
+                                    "date; echo Hello from the Kubernetes cluster"
+                                ],
+                                "image": "busybox:1.28",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "hello",
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "OnFailure",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            }
+        },
+        "schedule": "* * * * *",
+        "successfulJobsHistoryLimit": 3,
+        "suspend": false
+    },
+    "status": {
+        "lastScheduleTime": "2024-08-01T02:59:00Z",
+        "lastSuccessfulTime": "2024-08-01T02:59:06Z"
+    }
+}
