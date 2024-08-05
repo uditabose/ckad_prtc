@@ -1,0 +1,37 @@
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2024-08-05T00:58:53Z",
+        "name": "ngnix-clusterip-2",
+        "namespace": "default",
+        "resourceVersion": "3343100",
+        "uid": "3643fd41-8377-4a87-9c7d-52a78a34e28c"
+    },
+    "spec": {
+        "clusterIP": "10.104.228.65",
+        "clusterIPs": [
+            "10.104.228.65"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+            {
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": 81
+            }
+        ],
+        "selector": {
+            "app": "ngnix-clusterip-2"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}

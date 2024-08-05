@@ -1,0 +1,41 @@
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2024-08-05T00:19:58Z",
+        "labels": {
+            "app": "nginx-service"
+        },
+        "name": "nginx-service",
+        "namespace": "default",
+        "resourceVersion": "3336310",
+        "uid": "e54fd1de-fa4b-4ba5-9014-8793c90db3c3"
+    },
+    "spec": {
+        "clusterIP": "10.104.18.59",
+        "clusterIPs": [
+            "10.104.18.59"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+            {
+                "name": "80-9797",
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": 9797
+            }
+        ],
+        "selector": {
+            "app": "nginx-service"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
