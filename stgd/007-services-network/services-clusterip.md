@@ -126,8 +126,9 @@ nginx-service       ClusterIP   10.104.18.59    <none>        80/TCP    41m
 ngnix-clusterip-2   ClusterIP   10.104.228.65   <none>        80/TCP    2m36s
 ```
 
-
 ## Teardown
 
 ```bash
+kubectl delete services/nginx-service --force --grace-period=0
+kubectl delete services/ngnix-clusterip-2 --force --grace-period=0
 ```

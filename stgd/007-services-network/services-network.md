@@ -18,3 +18,5 @@ The concepts discussed -
 ## Reference
 
 - [Services, ClusterIp](/stgd/007-services-network/services-clusterip.md)
+- [Services, NodePort](/stgd/007-services-network/services-nodeport.md)
+
