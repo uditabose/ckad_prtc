@@ -17,3 +17,4 @@ Discussed -
 ## Reference
 
 - [Volumes](/stgd/008-state-persistence/volumes.md)
+- [Persistent Volume](/stgd/008-state-persistence/persistent-volumes.md)

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-consuming-pvc
+  labels:
+    name: app-consuming-pvc
+spec:
+  volumes:
+    - name: app-storage
+      persistentVolumeClaim:
+        claimName: mypvc
+  containers:
+  - name: app-consuming-pvc-cont
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do sleep 60; done;"]
+    volumeMounts:
+      - mountPath: "/mnt/data"
+        name: app-storage

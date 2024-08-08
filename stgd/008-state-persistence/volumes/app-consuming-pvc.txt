@@ -1,0 +1,62 @@
+Name:             app-consuming-pvc
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             docker-desktop/192.168.65.3
+Start Time:       Wed, 07 Aug 2024 23:42:02 -0400
+Labels:           name=app-consuming-pvc
+Annotations:      <none>
+Status:           Running
+IP:               10.1.84.227
+IPs:
+  IP:  10.1.84.227
+Containers:
+  app-consuming-pvc-cont:
+    Container ID:  docker://119cb80c1a45de686413385e15dfb7548ee7fa09147e31a977e8ddd8815c131a
+    Image:         alpine
+    Image ID:      docker-pullable://alpine@sha256:0a4eaa0eecf5f8c050e5bba433f58c052be7587ee8af3e8b3910ef9ab5fbe9f5
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+    Args:
+      -c
+      while true; do sleep 60; done;
+    State:          Running
+      Started:      Wed, 07 Aug 2024 23:42:03 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /mnt/data from app-storage (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7ndlr (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  app-storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  mypvc
+    ReadOnly:   false
+  kube-api-access-7ndlr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  12m   default-scheduler  Successfully assigned default/app-consuming-pvc to docker-desktop
+  Normal  Pulling    12m   kubelet            Pulling image "alpine"
+  Normal  Pulled     12m   kubelet            Successfully pulled image "alpine" in 738ms (738ms including waiting)
+  Normal  Created    12m   kubelet            Created container app-consuming-pvc-cont
+  Normal  Started    12m   kubelet            Started container app-consuming-pvc-cont
