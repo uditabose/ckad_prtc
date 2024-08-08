@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+  labels:
+    name: volume-pod
+spec:
+  volumes:
+  - name: logs-volume
+    emptyDir: {}
+  containers:
+  - name: volume-pod-cont
+    image: nginx
+    volumeMounts:
+    - mountPath: /var/logs
+      name: logs-volume
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9797
